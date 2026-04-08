@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Рождения, Сабина ♡</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #ff6b9d;
+            --secondary-pink: #ffc2d1;
+            --deep-pink: #c44569;
+            --black: #1a1a1a;
+            --soft-black: #2d2d2d;
+            --gold: #ffd700;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--black) 0%, var(--soft-black) 50%, var(--black) 100%);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Анимированные частицы-сердечки на фоне */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: var(--primary-pink);
+            opacity: 0;
+            animation: floatHeart 8s infinite ease-in-out;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Искрящиеся звездочки */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold);
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Основной контейнер */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Заголовок с анимацией */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+            animation: glowPulse 3s infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(255, 107, 157, 0.8)); }
+        }
+
+        .header .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--secondary-pink);
+            font-style: italic;
+            margin-top: 15px;
+            animation: fadeIn 2s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Секция с датой */
+        .date-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255, 107, 157, 0.1);
+            border: 2px solid var(--primary-pink);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1.5s ease-out 0.8s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .date-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+        }
+
+        .date-section p {
+            font-size: 1.2rem;
+            color: var(--secondary-pink);
+        }
+
+        /* Видео секция */
+        .video-section {
+            margin: 60px 0;
+            text-align: center;
+            animation: fadeIn 2s ease-out 1.2s both;
+        }
+
+        .video-wrapper {
+            position: relative;
+            max-width: 800px;
+            margin: 30px auto;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 
+                0 0 50px rgba(255, 107, 157, 0.4),
+                0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--primary-pink);
+            background: var(--black);
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--secondary-pink);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Галерея фотографий */
+        .gallery-section {
+            margin: 80px 0;
+            animation: fadeIn 2s ease-out 1.5s both;
+        }
+
+        .gallery-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            color: var(--primary-pink);
+            margin-bottom: 50px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(255, 107, 157, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInScale 0.8s ease-out both;
+            background: linear-gradient(135deg, var(--deep-pink), var(--primary-pink));
+            padding: 8px;
+        }
+
+        .photo-card:nth-child(1) { animation-delay: 1.6s; }
+        .photo-card:nth-child(2) { animation-delay: 1.8s; }
+        .photo-card:nth-child(3) { animation-delay: 2s; }
+        .photo-card:nth-child(4) { animation-delay: 2.2s; }
+        .photo-card:nth-child(5) { animation-delay: 2.4s; }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .photo-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.7),
+                0 0 50px rgba(255, 107, 157, 0.6);
+        }
+
+        .photo-inner {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            background: var(--black);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Секция с поздравлением */
+        .message-section {
+            margin: 80px auto;
+            max-width: 800px;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(196, 69, 105, 0.15));
+            border-radius: 30px;
+            border: 2px solid var(--primary-pink);
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 0 50px rgba(255, 107, 157, 0.1);
+            animation: fadeIn 2s ease-out 2.5s both;
+        }
+
+        .message-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--primary-pink);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .message-section p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            line-height: 1.8;
+            color: var(--secondary-pink);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* Декоративные элементы */
+        .decorative-hearts {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .decorative-hearts span {
+            color: var(--primary-pink);
+            filter: drop-shadow(0 0 10px var(--primary-pink));
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--secondary-pink);
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 15px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .message-section {
+                padding: 40px 25px;
+            }
+            
+            .photo-card img {
+                height: 350px;
+            }
+        }
+
+        /* Анимация появления при скролле */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Анимированные сердечки -->
+    <div class="hearts-container" id="heartsContainer"></div>
+    
+    <!-- Звездочки -->
+    <div class="stars-container" id="starsContainer"></div>
+
+    <div class="container">
+        <!-- Заголовок -->
+        <div class="header">
+            <h1>С Днём Рождения, Сабина!</h1>
+            <div class="decorative-hearts">
+                <span>♡</span>
+                <span>✨</span>
+                <span>♡</span>
+            </div>
+            <p class="subtitle">Самой особенной девушке в этот особенный день</p>
+        </div>
+
+        <!-- Дата -->
+        <div class="date-section">
+            <h2>13 апреля 2026</h2>
+            <p>Тебе исполняется 17 лет ✨</p>
+        </div>
+
+        <!-- Видео секция -->
+        <div class="video-section">
+            <h3>Наши моменты ♡</h3>
+            <div class="video-wrapper">
+                <!-- ИНСТРУКЦИЯ: Замените "path/to/your/video.mp4" на путь к вашему видео -->
+                <video controls loop muted playsinline>
+                    <source src="C:\Users\Ramazan\Desktop\birthday_site\videos\video.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+            </div>
+        </div>
+
+        <!-- Галерея фотографий -->
+        <div class="gallery-section">
+            <h3>Ты в каждом кадре прекрасна ♡</h3>
+            <div class="gallery-grid">
+                <!-- ИНСТРУКЦИЯ: Замените "path/to/photo1.jpg" на пути к вашим фотографиям -->
+                <div class="photo-card">
+                    <div class="photo-inner">
+                        <img src="C:\Users\Ramazan\Desktop\birthday_site\images\photo1.jpg" alt="Моя красавица">
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-inner">
+                        <img src="C:\Users\Ramazan\Desktop\birthday_site\images\photo2.jpg" alt="Мое солнышко">
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-inner">
+                        <img src="C:\Users\Ramazan\Desktop\birthday_site\images\photo3.jpg" alt="Моя умничка">
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-inner">
+                        <img src="C:\Users\Ramazan\Desktop\birthday_site\images\photo4.jpg" alt="Моя любимая">
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-inner">
+                        <img src="C:\Users\Ramazan\Desktop\birthday_site\images\photo4.jpg" alt="Моя зайка">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Поздравительное сообщение -->
+        <div class="message-section">
+            <h3>Моё послание тебе</h3>
+            <p>С днём рождения тебя.</p>
+            <p>Не люблю громкие слова, но ты правда стала для меня чем-то особенным.</p>
+            <p>Иногда ловлю себя на мысли, что думаю о тебе чаще, чем стоило бы… и мне это нравится.</p>
+            <p>Просто будь счастливой, ладно? Ты этого реально заслуживаешь.</p>
+            <div class="decorative-hearts">
+                <span>♡</span>
+                <span>♡</span>
+                <span>♡</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>С любовью, в твой особенный день ✨</p>
+        </footer>
+    </div>
+
+    <script>
+        // Создание плавающих сердечек
+        function createHeart() {
+            const heartsContainer = document.getElementById('heartsContainer');
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '♡';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Создание звездочек
+        function createStar() {
+            const starsContainer = document.getElementById('starsContainer');
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Генерация сердечек каждые 800ms
+        setInterval(createHeart, 800);
+
+        // Генерация 50 звездочек
+        for (let i = 0; i < 50; i++) {
+            createStar();
+        }
+
+        // Создание начальных сердечек
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createHeart, i * 300);
+        }
+
+        // Плавное появление элементов при скролле
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Проверка при загрузке
+    </script>
+</body>
+</html>
